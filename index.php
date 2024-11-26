@@ -14,7 +14,7 @@
             box-shadow: 0 0 5px #ccc;
         }
 
-        .todo-text {
+        .todo-text{
             font-weight: bold;
         }
 
@@ -24,7 +24,7 @@
 <div class="container">
 
     <div class="row d-flex justify-content-center">
-        <div class="todo-body my-5 p-3">
+        <div  class="todo-body my-5 p-3">
             <h1 class="text-center todo-text">Todo App</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi facere fugit hic nesciunt similique. Alias doloremque eaque esse explicabo. Dolorum ducimus harum libero molestiae necessitatibus optio perspiciatis quos repudiandae sunt?</p>
             <form action="index.php" method="POST">
