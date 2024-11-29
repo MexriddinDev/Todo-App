@@ -4,10 +4,12 @@ require "DB.php";
 class Todo {
     public $pdo;
     public function __construct () {
+
         $db = new DB();
         $this->pdo = $db->conn;
     }
     public function store (string $title, string $dueDate) {
+
         $query = "INSERT INTO todos(title, status, due_date, created_at, update_at) 
                 VALUES (:title, 'pending', :due_date, NOW(), NOW())
         ";
@@ -20,5 +22,24 @@ class Todo {
         $query = "SELECT * FROM todos";
         $stmt = $this->pdo->query($query);
         return $stmt->fetchAll();
+    }
+
+    public function complete (int $id): bool {
+        $query = "UPDATE todos set status='completed', update_at=NOW() where id=:id";
+        return $this->pdo->prepare($query)->execute([
+            ":id" => $id
+        ]);
+    }
+    public function in_progress(int $id): bool{
+        $query="Update todos set status='in_progress', update_at=NOW() where id=:id";
+        return $this->pdo->prepare($query)->execute([
+            ":id" => $id
+        ]);
+    }
+    public function pending (int $id): bool{
+        $query="Update todos set status='pending', update_at=NOW() where id=:id";
+        return $this->pdo->prepare($query)->execute([
+            ":id" => $id
+        ]);
     }
 }
