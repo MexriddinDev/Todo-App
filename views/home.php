@@ -55,7 +55,7 @@
                 qo‘shish va
                 bajarilganlarini o‘chirish imkonini beruvchi dastur. Bu loyiha foydalanuvchilarga o‘z vaqtini samarali
                 boshqarishga yordam beradi.</p>
-            <form method="POST" action="/store">
+            <form method="POST" action="/todos">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Recipient's username"
                            aria-label="Recipient's username" aria-describedby="button-addon2"
@@ -83,7 +83,7 @@
                             ' . $todo['title'] . '
                             <div>
                              <a href="/in_progress?id= ' . $todo["id"] . '" class="btn btn-outline-success">In Progress</a>
-                             <a href="/pending?id=' . $todo["id"] . ' " class="btn btn-outline-success">Pending</a>
+                             <a href="/pending?id=' . $todo["id"] . ' " class="btn btn-outline-primary">Pending</a>
                             
                     </div>
                    
@@ -93,7 +93,7 @@
                             ' . $todo['title'] . '
                             <div>
                              <a href="/in_progress?id= ' . $todo["id"] . '" class="btn btn-outline-success">In Progress</a>
-                             <a href="/complete?id=' . $todo["id"] . ' " class="btn btn-outline-success">Complete</a>
+                             <a href="/complete?id=' . $todo["id"] . ' " class="btn btn-outline-danger">Complete</a>
                             
                     </div>
                    
@@ -102,8 +102,9 @@
                             echo '<li class=" ' . $todo['status'] . ' list-group-item d-flex justify-content-between align-items-center">
                             ' . $todo['title'] . '
                             <div>
-                             <a href="/pending?id= ' . $todo["id"] . '" class="btn btn-outline-success">Pending</a>
-                             <a href="/complete?id=' . $todo["id"] . ' " class="btn btn-outline-success">Complete</a>
+                             <a href="/pending?id= ' . $todo["id"] . '" class="btn btn-outline-primary">Pending</a>
+                             <a href="/complete?id=' . $todo["id"] . ' " class="btn btn-outline-danger">Complete</a>
+                             
                            
                     </div>
                    
