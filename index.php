@@ -12,19 +12,10 @@ $todos = new Todo();
 
 
 
-//$router->get('/',function(){
-//    echo '<a href="/todos">Todos</a>';
-//
-//});
-
 $router->get('/', function () {
-
     view ('main');
+
 });
-
-
-
-
 
 
     $router->get('/todos', function ()use($todos){
@@ -34,40 +25,105 @@ $router->get('/', function () {
     ]);
 });
 
+
+
 $router->post('/todos', function ()use ($todos){
     if (!empty($_POST['title']) && !empty($_POST['due_date'])) {
         $todos->store($_POST['title'], $_POST['due_date']);
-        header('Location: /todos');
+        redirect('/todos');
 
     }
 });
-
-//$router->get('/complete', function ()use($todos){
-//    if (!empty($_GET['id'])) {
-//        $todos->complete($_GET['id']);
-//        header('Location: /todos');
-//    exit();
-//    }
+//$router->get('/todos/{id}/edit', function () {
+//    view ('edit');
 //});
-$router->get('/in_progress/{id}', function ($todoId)use($todos) {
+//$router->get('/todos/{id}/edit', function ($todoId) {
+//    echo 'Edit the task: ' . $todoId;
+//});
+
+$router->get('/todos/{id}/in_progress', function ($todoId)use($todos) {
 
         $todos->in_progress($todoId);
-        header('Location: /todos');
+       redirect('/todos');
         exit();
 
 });
-$router->get('/pending/{id}', function ($todoId)use($todos) {
+$router->get('/todos/{id}/pending', function ($todoId)use($todos) {
 
     $todos->pending($todoId);
-    header('Location: /todos');
+    redirect('/todos');
     exit();
 });
-$router->get('/complete/{id}', function ($todoId)use($todos) {
+$router->get('/todos/{id}/complete', function ($todoId)use($todos) {
 
     $todos->complete($todoId);
-    header('Location: /todos');
+    redirect(' /todos');
     exit();
 });
+
+$router->get('/todos/{id}/delete', function ($todoId) use($todos){
+  $todos->destroy($todoId);
+    redirect(' /todos');
+});
+
+$router->get('/todos/{id}/edit', function ($todoId) use($todos){
+//    echo 'Edit the task: ' . $todoId;
+    $getTodo=$todos->getTodo($todoId);
+    view ('edit', [
+        'todos'=>$getTodo
+
+    ]);
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //$router->get('/pending', function ()use($todos) {
 //    if (!empty($_GET['id'])) {
