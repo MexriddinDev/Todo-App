@@ -1,6 +1,7 @@
 <?php
 
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 require 'src/Todo.php';
 
 require 'helpers.php';
@@ -17,31 +18,9 @@ $todos = new Todo();
 //});
 
 $router->get('/', function () {
-    echo '
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-        <a href="/todos" style="
-            display: inline-block;
-            width: 300px;
-            height: 100px;
-            line-height: 100px;
-            font-size: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-           
-         background-image: url(\'https://octagon-design.com/cdn/shop/products/TODONEGRE.jpg?v=1604421213?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1\');
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-        " onmouseover="this.style.transform=\'scale(1.1)\'; this.style.boxShadow=\'0 6px 12px rgba(0, 0, 0, 0.3)\';"
-        onmouseout="this.style.transform=\'scale(1)\'; this.style.boxShadow=\'0 4px 8px rgba(0, 0, 0, 0.2)\';">
-            
-        </a>
-    </div>';
-});
 
+    view ('main');
+});
 
 
 
@@ -63,28 +42,41 @@ $router->post('/todos', function ()use ($todos){
     }
 });
 
-$router->get('/complete', function ()use($todos){
-    if (!empty($_GET['id'])) {
-        $todos->complete($_GET['id']);
+//$router->get('/complete', function ()use($todos){
+//    if (!empty($_GET['id'])) {
+//        $todos->complete($_GET['id']);
+//        header('Location: /todos');
+//    exit();
+//    }
+//});
+$router->get('/in_progress/{id}', function ($todoId)use($todos) {
+
+        $todos->in_progress($todoId);
         header('Location: /todos');
+        exit();
+
+});
+$router->get('/pending/{id}', function ($todoId)use($todos) {
+
+    $todos->pending($todoId);
+    header('Location: /todos');
     exit();
-    }
 });
-$router->get('/in_progress', function ()use($todos) {
-    if (!empty($_GET['id'])) {
-        $todos->in_progress($_GET['id']);
-        header('Location: /todos');
-        exit();
-    }
+$router->get('/complete/{id}', function ($todoId)use($todos) {
+
+    $todos->complete($todoId);
+    header('Location: /todos');
+    exit();
 });
-$router->get('/pending', function ()use($todos) {
-    if (!empty($_GET['id'])) {
-        $todos->pending($_GET['id']);
-        header('Location: /todos');
-        exit();
-    }
-});
-echo '<h1 align="center">404 NOT FOUND</h1>';
+
+//$router->get('/pending', function ()use($todos) {
+//    if (!empty($_GET['id'])) {
+//        $todos->pending($_GET['id']);
+//        header('Location: /todos');
+//        exit();
+//    }
+//});
+//echo '<h1 align="center">404 NOT FOUND</h1>';
 
 
 
