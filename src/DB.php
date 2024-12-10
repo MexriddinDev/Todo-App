@@ -1,12 +1,19 @@
 <?php
+namespace App;
+use PDO;
 
 class DB {
-    public $host = "localhost";
-    public $user = "root";
-    public $pass = "0226";
-    public $db = "Todo_app";
+    public $host;
+    public $user ;
+    public $pass ;
+    public $db ;
     public $conn;
     public function __construct() {
-        $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db, $this->user, $this->pass);
+        $this->host=$_ENV['DB_HOST'];
+        $this->user=$_ENV['DB_USER'];
+        $this->pass=$_ENV['DB_PASSWORD'];
+        $this->db=$_ENV['DB_NAME'];
+
+        $this->conn = new \PDO("mysql:host=" . $this->host . ";dbname=" . $this->db, $this->user, $this->pass);
     }
 }

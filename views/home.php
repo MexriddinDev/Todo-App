@@ -1,33 +1,38 @@
 <?php
-
-require_once "views/components/header.php";
+require 'views/components/header.php';
+require 'views/components/navbar.php';
 ?>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <a href="/todos" style="
-            display: inline-block;
-            width: 300px;
-            height: 100px;
-            line-height: 100px;
-            font-size: 20px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            background-image: url('https://octagon-design.com/cdn/shop/products/TODONEGRE.jpg?v=1604421213');
-            background-size: cover;
-            background-position: center;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-
-        "
-       onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)';"
-       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';">
-
-    </a>
+<div class="hero container-home container">
+    <div class="hero-text">
+        <h1>Organize your work and life, finally.</h1>
+        <p>
+            Simplify life for both you and your team with the world's #1 task manager and to-do list app.
+        </p>
+        <a href="/register" class="btn btn-primary btn-primary-home btn-lg">Start for free</a>
+    </div>
+    <div class="hero-image">
+        <img src="https://www.w3schools.com/html/pic_trulli.jpg" alt="App Screenshot">
+    </div>
 </div>
-
-
-
-<?php
-require 'views/components/footer.php';
-?>
+<!-- Testimonials Section -->
+<div class="testimonials">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <p class="quote">"Simple, straightforward, and super powerful"</p>
+            <p class="source">- The Verge</p>
+        </div>
+        <div class="col-md-3">
+            <p class="quote">"The best to-do list app on the market"</p>
+            <p class="source">- PC Mag</p>
+        </div>
+        <div class="col-md-3">
+            <p class="quote">"Nothing short of stellar"</p>
+            <p class="source">- TechRadar</p>
+        </div>
+    </div>
+</div>
+<div style="position: fixed; width: 100%; bottom: 0; ">
+    <?php
+    require 'views/components/footer.php';
+    ?>
+</div>

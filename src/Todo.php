@@ -1,5 +1,7 @@
 <?php
-require "DB.php";
+//require "DB.php";
+namespace App;
+use App\DB;
 
 class Todo {
     public $pdo;
@@ -24,24 +26,24 @@ class Todo {
         return $stmt->fetchAll();
     }
 
-    public function complete (int $id): bool {
-        $query = "UPDATE todos set status='completed', update_at=NOW() where id=:id";
-        return $this->pdo->prepare($query)->execute([
-            ":id" => $id
-        ]);
-    }
-    public function in_progress(int $id): bool{
-        $query="Update todos set status='in_progress', update_at=NOW() where id=:id";
-        return $this->pdo->prepare($query)->execute([
-            ":id" => $id
-        ]);
-    }
-    public function pending (int $id): bool{
-        $query="Update todos set status='pending', update_at=NOW() where id=:id";
-        return $this->pdo->prepare($query)->execute([
-            ":id" => $id
-        ]);
-    }
+//    public function complete (int $id): bool {
+//        $query = "UPDATE todos set status='completed', update_at=NOW() where id=:id";
+//        return $this->pdo->prepare($query)->execute([
+//            ":id" => $id
+//        ]);
+//    }
+//    public function in_progress(int $id): bool{
+//        $query="Update todos set status='in_progress', update_at=NOW() where id=:id";
+//        return $this->pdo->prepare($query)->execute([
+//            ":id" => $id
+//        ]);
+//    }
+//    public function pending (int $id): bool{
+//        $query="Update todos set status='pending', update_at=NOW() where id=:id";
+//        return $this->pdo->prepare($query)->execute([
+//            ":id" => $id
+//        ]);
+//    }
 
     public function destroy (int $id): bool{
         $query="Delete from todos WHERE id=:id";
@@ -58,5 +60,17 @@ class Todo {
             ":id" => $id
         ]);
         return $stmt->fetch();
+    }
+
+    public function update (int $id, string $title, string $status, string $dueDate) {
+        $query="Update todos set
+        title=:title, status=:status, due_date=:due_date, update_at=NOW() where id=:id";
+        $stmt = $this->pdo->prepare($query);
+        return $stmt->execute([
+            ":id" => $id,
+            ":title" => $title,
+            ":status" => $status,
+            ":due_date" => $dueDate
+        ]);
     }
 }

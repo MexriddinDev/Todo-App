@@ -1,5 +1,5 @@
 <?php
-
+namespace App;
 class Router
 {
     public $currentRoute;
@@ -29,6 +29,16 @@ class Router
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($route == $this->currentRoute){
                 $callback();
+                exit();
+            }
+        }
+    }
+    public function put($route, $callback){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if($_POST['_method'] == 'PUT'){
+                $resourseId =  $this->getResource();
+                $route=str_replace("{id}", $resourseId, $route);
+                $callback($resourseId);
                 exit();
             }
         }

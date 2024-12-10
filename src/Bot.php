@@ -9,7 +9,7 @@ use GuzzleHttp\Client;
 class Bot
 {
     const API_URL = 'https://api.telegram.org/bot';
-    public $client;
+    public  $client;
     public $token;
 
     public function __construct()

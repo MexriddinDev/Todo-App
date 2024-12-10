@@ -1,5 +1,7 @@
 <?php
 require 'views/components/header.php';
+require 'views/components/navbar.php';
+
 ?>
 <div class="container">
     <div class="row d-flex justify-content-center">
@@ -74,6 +76,8 @@ require 'views/components/header.php';
         </div>
     </div>
 </div>
-<?php
-require 'views/components/footer.php';
-?>
+<div style="position: fixed; width: 100%; bottom: 0; ">
+    <?php
+    require 'views/components/footer.php';
+    ?>
+</div>

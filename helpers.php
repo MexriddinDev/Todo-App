@@ -11,3 +11,4 @@ function redirect(string $url){
     exit;
 
 }
+
